@@ -2,14 +2,12 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\ParserForm;
+use AppBundle\Entity\CSVFile;
+use AppBundle\Form\CSVFileType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use \KzykHys\CsvParser\CsvParser;
+use Symfony\Component\HttpFoundation\Request;
 
 class DefaultController extends Controller
 {
@@ -18,17 +16,36 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $parser = new ParserForm();
-        $form = $this->createFormBuilder($parser)
-            ->add('filename', TextType::class)
-            ->add('file', FileType::class)
-            ->add('add', SubmitType::class)
-            ->getForm();
+        $file = new CSVFile();
+        $form = $this->createForm(CSVFileType::class, $file)->add('Parse', SubmitType::class);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $fileToParse = $file->getFile();
+
+            $parser = $this->get('csv.parser');
+            $result = $parser->parseCSVFile($fileToParse);
+            print_r($result);
+            //$em = $this->getDoctrine()->getManager();
+
+            $columns = implode(',', array_values($result[0]));
+            /*foreach ($result as $recordKey => $recordValue) {
+                foreach ($recordValue as $key => $value) {
+                    $values[] = $value;
+                }
+                $comma_separated = implode(",", $values);
+                $l = $comma_separated.'<hr>';
+            }*/
+            echo($columns);
 
 
-        //$parser = CsvParser::fromFile('./');
-        //$result = $parser->parse();
-        // replace this example code with whatever you need
+
+            //$em->persist($product);
+            //$em->flush();
+            return $this->render('default/success.html.twig');
+        }
+
         return $this->render('default/parse.html.twig', array(
             'form' => $form->createView(),
         ));
