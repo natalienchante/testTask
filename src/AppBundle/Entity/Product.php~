@@ -49,9 +49,14 @@ class Product
     private $dateTimeAdded;
 
     /**
-     * @ORM\Column(name="dtmDiscontinued", type="datetime", nullable=true)
+     * @ORM\Column(name="dtmDiscontinued", type="datetime")
      */
     private $dateTimeDiscontinued;
+
+    /**
+     * @ORM\Column(name="stmTimestamp", type="datetime")
+     */
+    private $timestamp;
 
 
     /**
@@ -185,50 +190,26 @@ class Product
     }
 
     /**
-     * Set stock
+     * Set timestamp
      *
-     * @param integer $stock
+     * @param \DateTime $timestamp
      *
      * @return Product
      */
-    public function setStock($stock)
+    public function setTimestamp($timestamp)
     {
-        $this->stock = $stock;
+        $this->timestamp = $timestamp;
 
         return $this;
     }
 
     /**
-     * Get stock
+     * Get timestamp
      *
-     * @return integer
+     * @return \DateTime
      */
-    public function getStock()
+    public function getTimestamp()
     {
-        return $this->stock;
-    }
-
-    /**
-     * Set price
-     *
-     * @param string $price
-     *
-     * @return Product
-     */
-    public function setPrice($price)
-    {
-        $this->price = $price;
-
-        return $this;
-    }
-
-    /**
-     * Get price
-     *
-     * @return string
-     */
-    public function getPrice()
-    {
-        return $this->price;
+        return $this->timestamp;
     }
 }

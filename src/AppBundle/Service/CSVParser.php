@@ -1,14 +1,13 @@
 <?php
 namespace AppBundle\Service;
 
-use \KzykHys\CsvParser\CsvParser as Parser;
+use Coseva\CSV as CSV;
 
 class CSVParser
 {
     public function parseCSVFile($file)
     {
-        $parser = Parser::fromFile($file);
-        return $parser->parse();
+        $csv = new CSV($file);
+        return $csv->parse();
     }
 }
-

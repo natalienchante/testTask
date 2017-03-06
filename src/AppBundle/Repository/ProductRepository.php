@@ -6,12 +6,13 @@ use Doctrine\ORM\EntityRepository;
 
 class ProductRepository extends EntityRepository
 {
-    public function findAllOrderedByName()
-    {
-        return $this->getEntityManager()
-            ->createQuery(
-                'SELECT p FROM AppBundle:Product p ORDER BY p.name ASC'
-            )
-            ->getResult();
-    }
+//    public function insertProductsFromCSV()
+//    {
+//        return $this->getEntityManager()
+//            ->createQuery(
+//                'INSERT INTO tblProductData (strProductName, strProductDesc, intProductStock, numProductPrice, strProductCode,
+//                dtmAdded, dtmDiscontinued) VALUES (:name, :description, :stock, :price, :code, :timeAdded, :timeDiscontinued)'
+//            )
+//            ->getResult();
+//    }
 }

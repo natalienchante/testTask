@@ -16,6 +16,7 @@
             "Tests\\": "tests/"
         }
     },
+    "minimum-stability": "dev",
     "require": {
         "php": ">=5.5.9",
         "symfony/symfony": "3.2.*",
@@ -30,7 +31,10 @@
         "incenteev/composer-parameter-handler": "^2.0",
         "twig/twig": "^1.0||^2.0",
         "kzykhys/php-csv-parser": "^1.4",
-        "symfony/dependency-injection": "^3.2"
+        "symfony/dependency-injection": "^3.2",
+        "johnnyfreeman/coseva": "dev-master",
+        "doctrine/doctrine-migrations-bundle": "^1.0",
+        "portphp/csv": "^1.0@dev"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",

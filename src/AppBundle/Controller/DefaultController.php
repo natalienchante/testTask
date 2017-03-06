@@ -23,26 +23,9 @@ class DefaultController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $fileToParse = $file->getFile();
-
-            $parser = $this->get('csv.parser');
-            $result = $parser->parseCSVFile($fileToParse);
-            print_r($result);
-            //$em = $this->getDoctrine()->getManager();
-
-            $columns = implode(',', array_values($result[0]));
-            /*foreach ($result as $recordKey => $recordValue) {
-                foreach ($recordValue as $key => $value) {
-                    $values[] = $value;
-                }
-                $comma_separated = implode(",", $values);
-                $l = $comma_separated.'<hr>';
-            }*/
-            echo($columns);
-
-
-
-            //$em->persist($product);
-            //$em->flush();
+            $parsedFile = $this->get('csv.parser')->parseCSVFile($fileToParse);
+            $validatedRecords = $this->get('record.validator')->validateRecords($parsedFile);
+            $this->get('db.processor')->executeInsert($validatedRecords);
             return $this->render('default/success.html.twig');
         }
 
@@ -50,4 +33,6 @@ class DefaultController extends Controller
             'form' => $form->createView(),
         ));
     }
+
+
 }
