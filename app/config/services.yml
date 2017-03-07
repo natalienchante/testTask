@@ -3,15 +3,32 @@
 #    parameter_name: value
 
 services:
-    csv.parser:
-        class: AppBundle\Service\CSVParser
+#    csv.parser:
+#        class: AppBundle\Service\CSVParser
+#
+#    record.validator:
+#        class: AppBundle\Service\RecordValidator
+#
+#    db.processor:
+#        class: AppBundle\Service\DBProcessor
+#        arguments:
+#            - '@doctrine.orm.entity_manager'
 
-    record.validator:
-        class: AppBundle\Service\RecordValidator
+    filter:
+        class: AppBundle\Service\FilterService
 
-    db.processor:
-        class: AppBundle\Service\DBProcessor
+    converter:
+        class: AppBundle\Service\ConverterService
+
+    mapping:
+        class: AppBundle\Service\MappingService
+
+    workflow.organizer:
+        class: AppBundle\Service\WorkflowOrganizer
         arguments:
+            - '@filter'
+            - '@converter'
+            - '@mapping'
             - '@doctrine.orm.entity_manager'
 
 #    service_name:

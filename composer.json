@@ -34,7 +34,10 @@
         "symfony/dependency-injection": "^3.2",
         "johnnyfreeman/coseva": "dev-master",
         "doctrine/doctrine-migrations-bundle": "^1.0",
-        "portphp/csv": "^1.0@dev"
+        "portphp/csv": "^1.0@dev",
+        "portphp/steps": "^1.0@dev",
+        "portphp/doctrine": "1.0.x-dev",
+        "portphp/portphp": "1.0.x-dev"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",

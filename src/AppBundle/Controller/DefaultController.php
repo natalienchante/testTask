@@ -23,9 +23,12 @@ class DefaultController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $fileToParse = $file->getFile();
-            $parsedFile = $this->get('csv.parser')->parseCSVFile($fileToParse);
-            $validatedRecords = $this->get('record.validator')->validateRecords($parsedFile);
-            $this->get('db.processor')->executeInsert($validatedRecords);
+            $this->get('workflow.organizer')->processCSVFile($fileToParse);
+
+//            $parsedFile = $this->get('csv.parser')->parseCSVFile($fileToParse);
+//            $validatedRecords = $this->get('record.validator')->validateRecords($parsedFile);
+//            $this->get('db.processor')->executeInsert($validatedRecords);
+
             return $this->render('default/success.html.twig');
         }
 

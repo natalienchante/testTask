@@ -2,6 +2,7 @@
 <module type="WEB_MODULE" version="4">
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/vendor/behat/transliterator" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/composer" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/doctrine/annotations" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/doctrine/cache" />
@@ -16,6 +17,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/doctrine/lexer" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/doctrine/migrations" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/doctrine/orm" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/gedmo/doctrine-extensions" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/incenteev/composer-parameter-handler" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/jdorn/sql-formatter" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/johnnyfreeman/coseva" />
@@ -25,9 +27,12 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/ocramius/proxy-manager" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/paragonie/random_compat" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/portphp/csv" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/portphp/doctrine" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/portphp/portphp" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/portphp/steps" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/psr/cache" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/psr/log" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/seld/signal-handler" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/sensio/distribution-bundle" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/sensio/framework-extra-bundle" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/sensio/generator-bundle" />
@@ -62,6 +67,7 @@
     <orderEntry type="module-library">
       <library name="PHP" type="php">
         <CLASSES>
+          <root url="file://$MODULE_DIR$/vendor/behat/transliterator" />
           <root url="file://$MODULE_DIR$/vendor/composer" />
           <root url="file://$MODULE_DIR$/vendor/doctrine/annotations" />
           <root url="file://$MODULE_DIR$/vendor/doctrine/cache" />
@@ -76,6 +82,7 @@
           <root url="file://$MODULE_DIR$/vendor/doctrine/lexer" />
           <root url="file://$MODULE_DIR$/vendor/doctrine/migrations" />
           <root url="file://$MODULE_DIR$/vendor/doctrine/orm" />
+          <root url="file://$MODULE_DIR$/vendor/gedmo/doctrine-extensions" />
           <root url="file://$MODULE_DIR$/vendor/incenteev/composer-parameter-handler" />
           <root url="file://$MODULE_DIR$/vendor/jdorn/sql-formatter" />
           <root url="file://$MODULE_DIR$/vendor/johnnyfreeman/coseva" />
@@ -85,9 +92,12 @@
           <root url="file://$MODULE_DIR$/vendor/ocramius/proxy-manager" />
           <root url="file://$MODULE_DIR$/vendor/paragonie/random_compat" />
           <root url="file://$MODULE_DIR$/vendor/portphp/csv" />
+          <root url="file://$MODULE_DIR$/vendor/portphp/doctrine" />
           <root url="file://$MODULE_DIR$/vendor/portphp/portphp" />
+          <root url="file://$MODULE_DIR$/vendor/portphp/steps" />
           <root url="file://$MODULE_DIR$/vendor/psr/cache" />
           <root url="file://$MODULE_DIR$/vendor/psr/log" />
+          <root url="file://$MODULE_DIR$/vendor/seld/signal-handler" />
           <root url="file://$MODULE_DIR$/vendor/sensio/distribution-bundle" />
           <root url="file://$MODULE_DIR$/vendor/sensio/framework-extra-bundle" />
           <root url="file://$MODULE_DIR$/vendor/sensio/generator-bundle" />
@@ -108,6 +118,7 @@
           <root url="file://$MODULE_DIR$/vendor/zendframework/zend-eventmanager" />
         </CLASSES>
         <SOURCES>
+          <root url="file://$MODULE_DIR$/vendor/behat/transliterator" />
           <root url="file://$MODULE_DIR$/vendor/composer" />
           <root url="file://$MODULE_DIR$/vendor/doctrine/annotations" />
           <root url="file://$MODULE_DIR$/vendor/doctrine/cache" />
@@ -122,6 +133,7 @@
           <root url="file://$MODULE_DIR$/vendor/doctrine/lexer" />
           <root url="file://$MODULE_DIR$/vendor/doctrine/migrations" />
           <root url="file://$MODULE_DIR$/vendor/doctrine/orm" />
+          <root url="file://$MODULE_DIR$/vendor/gedmo/doctrine-extensions" />
           <root url="file://$MODULE_DIR$/vendor/incenteev/composer-parameter-handler" />
           <root url="file://$MODULE_DIR$/vendor/jdorn/sql-formatter" />
           <root url="file://$MODULE_DIR$/vendor/johnnyfreeman/coseva" />
@@ -131,9 +143,12 @@
           <root url="file://$MODULE_DIR$/vendor/ocramius/proxy-manager" />
           <root url="file://$MODULE_DIR$/vendor/paragonie/random_compat" />
           <root url="file://$MODULE_DIR$/vendor/portphp/csv" />
+          <root url="file://$MODULE_DIR$/vendor/portphp/doctrine" />
           <root url="file://$MODULE_DIR$/vendor/portphp/portphp" />
+          <root url="file://$MODULE_DIR$/vendor/portphp/steps" />
           <root url="file://$MODULE_DIR$/vendor/psr/cache" />
           <root url="file://$MODULE_DIR$/vendor/psr/log" />
+          <root url="file://$MODULE_DIR$/vendor/seld/signal-handler" />
           <root url="file://$MODULE_DIR$/vendor/sensio/distribution-bundle" />
           <root url="file://$MODULE_DIR$/vendor/sensio/framework-extra-bundle" />
           <root url="file://$MODULE_DIR$/vendor/sensio/generator-bundle" />
