@@ -28,9 +28,9 @@ class WorkflowOrganizer
         $this->em = $em;
     }
 
-    public function processCSVFile($file)
+    public function processCSVFile($filename, $test=false)
     {
-        $fileObject = new \SplFileObject($file);
+        $fileObject = new \SplFileObject($filename);
         $fileObject->setFlags(
             \SplFileObject::READ_CSV |
             \SplFileObject::READ_AHEAD |
@@ -39,23 +39,27 @@ class WorkflowOrganizer
         );
         $this->reader = new CsvReader($fileObject, ',');
         $this->reader->setHeaderRowNumber(0);
-        $this->writer = new DoctrineWriter($this->em, Product::class);
-        $this->writer->prepare();
-        $this->workflow = $this->createWorkflow();
+        if (!$test) {
+            $this->writer = new DoctrineWriter($this->em, Product::class);
+            $this->writer->prepare();
+        }
+        $this->workflow = $this->createWorkflow($test);
         $result = $this->workflow->process();
 
-        echo $result->getErrorCount();
-        echo '<hr>';
-        echo $result->getSuccessCount();
-        echo '<hr>';
-        echo $result->getTotalProcessedCount();
-        echo '<hr>';
+        echo 'Всего ошибок: '.$result->getErrorCount();
+        echo "\n";
+        echo 'Успешно: '.$result->getSuccessCount();
+        echo "\n";
+        echo 'Всего обработано: '.$result->getTotalProcessedCount();
+        echo "\n";
     }
 
-    private function createWorkflow()
+    private function createWorkflow($test=false)
     {
         $workflow = new Workflow($this->reader);
-        $workflow->addWriter($this->writer);
+        if (!$test) {
+            $workflow->addWriter($this->writer);
+        } // переделать
         $workflow->addStep($this->filterStep->generateFilterStep());
         $workflow->addStep($this->converterStep->generateConvertStep());
         $workflow->addStep($this->mappingStep->generateMappingStep());
