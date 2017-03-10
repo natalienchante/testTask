@@ -4,8 +4,15 @@ namespace AppBundle\Service;
 
 use Port\Steps\Step\FilterStep;
 
+/**
+ * Class FilterService
+ * @package AppBundle\Service
+ */
 class FilterService
 {
+    /**
+     * @return FilterStep
+     */
     public function generateFilterStep()
     {
         $filterStep = new FilterStep();
@@ -15,18 +22,33 @@ class FilterService
         return $filterStep;
     }
 
+    /**
+     * @param $value
+     *
+     * @return bool
+     */
     private function isValidPrice($value)
     {
-        return is_numeric($value) && $value >= 5 && $value <= 1000 ? true : false;
+        return is_numeric($value) && $value >= 5 && $value <= 1000;
     }
 
+    /**
+     * @param $value
+     *
+     * @return bool
+     */
     private function isValidStock($value)
     {
-        return isset($value) && is_numeric($value) && $value >= 10 ? true : false;
+        return is_numeric($value) && $value >= 10;
     }
 
+    /**
+     * @param $value
+     *
+     * @return bool
+     */
     private function isValidDiscontinued($value)
     {
-        return $value =='yes' || $value == '' ? true : false;
+        return $value =='yes' || $value == '';
     }
 }

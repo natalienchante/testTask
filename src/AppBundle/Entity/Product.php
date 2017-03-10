@@ -8,7 +8,6 @@ use Gedmo\Mapping\Annotation as Gedmo;
 /**
  * @ORM\Entity
  * @ORM\Table(name="tblProductData")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\ProductRepository")
  */
 class Product
 {

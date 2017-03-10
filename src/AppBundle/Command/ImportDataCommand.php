@@ -30,8 +30,9 @@ class ImportDataCommand extends ContainerAwareCommand
     {
         $filename = $input->getArgument('filename');
         $workflowOrganizer = $this->getContainer()->get('workflow.organizer');
-        $input->getOption('test') ?
-            $workflowOrganizer->processCSVFile($filename, $test=true) :
-            $workflowOrganizer->processCSVFile($filename);
+        $result = $workflowOrganizer->processCSVFile($filename, $test=$input->getOption('test'));
+        $output->writeln('Всего ошибок: '.$result->getErrorCount());
+        $output->writeln('Успешно: '.$result->getSuccessCount());
+        $output->writeln('Всего обработано: '.$result->getTotalProcessedCount());
     }
 }

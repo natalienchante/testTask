@@ -23,13 +23,20 @@ services:
     mapping:
         class: AppBundle\Service\MappingService
 
+    csv.reader.factory:
+        class: Port\Csv\CsvReaderFactory
+
+    doctrine.writer.factory:
+        class: AppBundle\Service\DoctrineWriterFactory
+
     workflow.organizer:
         class: AppBundle\Service\WorkflowOrganizer
         arguments:
             - '@filter'
             - '@converter'
             - '@mapping'
-            - '@doctrine.orm.entity_manager'
+            - '@csv.reader.factory'
+            - '@doctrine.writer.factory'
 
 #    service_name:
 #        class: AppBundle\Directory\ClassName
