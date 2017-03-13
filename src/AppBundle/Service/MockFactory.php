@@ -3,9 +3,8 @@
 namespace AppBundle\Service;
 
 use PHPUnit\Framework\TestCase;
-use Port\Csv\CsvReaderFactory;
-use \Port\Csv\CsvReader;
-use \Port\Doctrine\DoctrineWriter;
+use Port\Csv\{CsvReaderFactory, CsvReader};
+use Port\Doctrine\DoctrineWriter;
 
 class MockFactory extends TestCase
 {

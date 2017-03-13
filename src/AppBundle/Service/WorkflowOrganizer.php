@@ -4,8 +4,7 @@ namespace AppBundle\Service;
 
 use AppBundle\Entity\Product;
 use Port\Steps\StepAggregator as Workflow;
-use Port\Csv\CsvReaderFactory;
-use Port\Csv\CsvReader;
+use Port\Csv\{CsvReaderFactory, CsvReader};
 
 
 /**
