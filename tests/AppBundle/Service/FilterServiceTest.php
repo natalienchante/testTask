@@ -26,8 +26,8 @@ class FilterServiceTestTest extends TestCase
     {
         $mockFactory = new MockFactory();
         $this->workflowOrganizer = $mockFactory->createWorkflowOrganizer($data);
-        $this->assertEquals($data['count'], $this->workflowOrganizer->
-            processCSVFile(new \SplFileObject('php://memory'), true)['result']->getTotalProcessedCount());
+        $this->assertEquals($data['count'], count($this->workflowOrganizer->
+            processCSVFile(new \SplFileObject('php://memory'), true)['failedItems']));
     }
 
     /**
@@ -43,7 +43,7 @@ class FilterServiceTestTest extends TestCase
             'Stock' => 10,
             'Cost in GBP' => 'Hello',
             'Discontinued' => ''
-            ], 'count' => 0]],
+            ], 'count' => 1]],
             2 => [['row' => [
                 'Product Code' => 'P0002',
                 'Product Name' => 'TV',
@@ -51,7 +51,7 @@ class FilterServiceTestTest extends TestCase
                 'Stock' => 10,
                 'Cost in GBP' => 4,
                 'Discontinued' => ''
-            ], 'count' => 0]],
+            ], 'count' => 1]],
             3 => [['row' => [
                 'Product Code' => 'P0002',
                 'Product Name' => 'TV',
@@ -59,7 +59,7 @@ class FilterServiceTestTest extends TestCase
                 'Stock' => 10,
                 'Cost in GBP' => 1010,
                 'Discontinued' => 'yes'
-            ], 'count' => 0]],
+            ], 'count' => 1]],
             4 => [['row' => [
                 'Product Code' => 'P0002',
                 'Product Name' => 'TV',
@@ -67,7 +67,7 @@ class FilterServiceTestTest extends TestCase
                 'Stock' => 'why',
                 'Cost in GBP' => 50,
                 'Discontinued' => 'yes'
-            ], 'count' => 0]],
+            ], 'count' => 1]],
             5 => [['row' => [
                 'Product Code' => 'P0002',
                 'Product Name' => 'TV',
@@ -75,7 +75,7 @@ class FilterServiceTestTest extends TestCase
                 'Stock' => 3,
                 'Cost in GBP' => 50,
                 'Discontinued' => 'yes'
-            ], 'count' => 0]],
+            ], 'count' => 1]],
             6 => [['row' => [
                 'Product Code' => 'P0002',
                 'Product Name' => 'TV',
@@ -83,7 +83,7 @@ class FilterServiceTestTest extends TestCase
                 'Stock' => 10,
                 'Cost in GBP' => 10,
                 'Discontinued' => 'hi'
-            ], 'count' => 0]],
+            ], 'count' => 1]],
             7 => [['row' => [
                 'Product Code' => 'P0002',
                 'Product Name' => 'TV',
@@ -91,7 +91,7 @@ class FilterServiceTestTest extends TestCase
                 'Stock' => 10,
                 'Cost in GBP' => 4,
                 'Discontinued' => 0
-            ], 'count' => 0]],
+            ], 'count' => 1]],
             8 => [['row' => [
                 'Product Code' => 'P0002',
                 'Product Name' => 'TV',
@@ -99,7 +99,7 @@ class FilterServiceTestTest extends TestCase
                 'Stock' => 10,
                 'Cost in GBP' => 12,
                 'Discontinued' => 'yes'
-            ], 'count' => 1]],
+            ], 'count' => 0]],
             7 => [['row' => [
                 'Product Code' => 'P0002',
                 'Product Name' => 'TV',
@@ -107,7 +107,7 @@ class FilterServiceTestTest extends TestCase
                 'Stock' => 10,
                 'Cost in GBP' => 20,
                 'Discontinued' => ''
-            ], 'count' => 1]],
+            ], 'count' => 0]],
         ];
     }
 
