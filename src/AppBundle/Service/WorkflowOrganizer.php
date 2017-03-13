@@ -78,7 +78,7 @@ class WorkflowOrganizer
         if (!$test) {
             $this->workflow->addWriter($this->generateDoctrineWriter());
         }
-        return ['result' => $this->workflow->process(), 'failedItems' => $this->workflow->getFailedItems()];
+        return ['result' => $this->workflow->process(), 'failedItems' => $this->filterStep->getFailedItems()];
     }
 
     /**
@@ -89,9 +89,9 @@ class WorkflowOrganizer
     private function createWorkflow($reader)
     {
         $workflow = new Workflow($reader);
+        $workflow->addStep($this->mappingStep->generateMappingStep());
         $workflow->addStep($this->filterStep->generateFilterStep());
         $workflow->addStep($this->converterStep->generateConvertStep());
-        $workflow->addStep($this->mappingStep->generateMappingStep());
         return $workflow;
     }
 

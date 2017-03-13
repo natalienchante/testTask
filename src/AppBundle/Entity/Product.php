@@ -54,7 +54,6 @@ class Product
      */
     private $dateTimeDiscontinued;
 
-
     /**
      * Get id
      *

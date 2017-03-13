@@ -11,15 +11,45 @@ use Port\Steps\Step\FilterStep;
 class FilterService
 {
     /**
+     * @var array
+     */
+    private $failedItems = [];
+
+    /**
      * @return FilterStep
      */
     public function generateFilterStep()
     {
         $filterStep = new FilterStep();
-        $filterStep->add(function ($input) { return $this->isValidPrice($input['Cost in GBP']); });
-        $filterStep->add(function ($input) { return $this->isValidStock($input['Stock']); });
-        $filterStep->add(function ($input) { return $this->isValidDiscontinued($input['Discontinued']); });
-        return $filterStep;
+        return $filterStep->add(function ($input) {
+            return $this->isValidInput($input);
+        });
+    }
+
+    /**
+     * @return array
+     */
+    public function getFailedItems()
+    {
+        return $this->failedItems;
+    }
+
+    /**
+     * @param $input
+     *
+     * @return bool
+     */
+    private function isValidInput($input)
+    {
+        if ($this->isValidPrice($input['price'])
+            && $this->isValidStock($input['stock'])
+            && $this->isValidDiscontinued($input['dateTimeDiscontinued'])
+        ) {
+            return true;
+        } else {
+            $this->failedItems[] = $input;
+            return false;
+        }
     }
 
     /**
@@ -49,6 +79,6 @@ class FilterService
      */
     private function isValidDiscontinued($value)
     {
-        return $value =='yes' || $value == '';
+        return $value == 'yes' || $value == '';
     }
 }

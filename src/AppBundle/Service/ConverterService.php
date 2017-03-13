@@ -2,6 +2,7 @@
 
 namespace AppBundle\Service;
 
+use DateTime;
 use Port\Steps\Step\ConverterStep;
 
 /**
@@ -27,7 +28,7 @@ class ConverterService
      */
     private function updateDiscontinuedValue($input)
     {
-        $input['Discontinued'] = strval($input['Discontinued']) == 'yes' ? $date = new \DateTime() : null;
+        $input['dateTimeDiscontinued'] = $input['dateTimeDiscontinued'] == 'yes' ? new DateTime() : null;
         return $input;
     }
 }

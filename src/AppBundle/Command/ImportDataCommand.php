@@ -30,13 +30,14 @@ class ImportDataCommand extends ContainerAwareCommand
     {
         $filename = $input->getArgument('filename');
         $workflowOrganizer = $this->getContainer()->get('workflow.organizer');
-        $result = $workflowOrganizer->processCSVFile(new \SplFileObject($filename), $test=$input->getOption('test'));
-        $output->writeln('Всего ошибок: '.$result['result']->getErrorCount());
-        $output->writeln('Успешно: '.$result['result']->getSuccessCount());
-        $output->writeln('Всего обработано: '.$result['result']->getTotalProcessedCount());
+        $result = $workflowOrganizer->processCSVFile(new \SplFileObject($filename), $test = $input->getOption('test'));
+        $output->writeln('Ошибочных записей: ' . count($result['failedItems']));
+        $output->writeln('Прошли фильтр: ' .
+            ($result['result']->getTotalProcessedCount() - count($result['failedItems'])));
+        $output->writeln('Всего обработано: ' . $result['result']->getTotalProcessedCount());
         $output->writeln('Не прошли проверку данные с кодом: ');
         foreach ($result['failedItems'] as $item) {
-            $output->writeln($item['Product Code']);
+            $output->writeln($item['productCode']);
         }
     }
 }

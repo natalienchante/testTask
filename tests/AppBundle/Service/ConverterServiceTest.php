@@ -27,11 +27,11 @@ class ConverterServiceTest extends TestCase
         $mockFactory = new MockFactory();
         $this->workflowOrganizer = $mockFactory->createWorkflowOrganizer($data);
         $this->workflowOrganizer->processCSVFile(new \SplFileObject('php://memory'), true);
-        $date = new \DateTime($this->savedItem['Discontinued']);
+        $date = new \DateTime($this->savedItem['dateTimeDiscontinued']);
         if ($data['isDateTime']) {
             $this->assertInstanceOf(\DateTime::class, $date);
         } else {
-            $this->assertEquals($this->savedItem['Discontinued'], $data['row']['Discontinued']);
+            $this->assertEquals($this->savedItem['dateTimeDiscontinued'], $data['row']['Discontinued']);
         }
     }
 
