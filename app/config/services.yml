@@ -25,9 +25,13 @@ services:
 
     csv.reader.factory:
         class: Port\Csv\CsvReaderFactory
+        arguments:
+            - 0
 
     doctrine.writer.factory:
         class: AppBundle\Service\DoctrineWriterFactory
+        arguments:
+            - '@doctrine.orm.entity_manager'
 
     workflow.organizer:
         class: AppBundle\Service\WorkflowOrganizer

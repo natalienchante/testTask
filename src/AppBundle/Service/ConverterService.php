@@ -27,7 +27,8 @@ class ConverterService
      */
     private function updateDiscontinuedValue($input)
     {
-        $input['Discontinued'] = $input['Discontinued'] == 'yes' ? new \DateTime() : null;
+//        $date = new \DateTime();
+        $input['Discontinued'] = strval($input['Discontinued']) == 'yes' ? $date = new \DateTime() : null;
         return $input;
     }
 }

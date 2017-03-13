@@ -3,9 +3,10 @@
 namespace AppBundle\Service;
 
 use AppBundle\Entity\Product;
-use Port\Result;
 use Port\Steps\StepAggregator as Workflow;
 use Port\Csv\CsvReaderFactory;
+use Port\Csv\CsvReader;
+
 
 /**
  * Class WorkflowOrganizer
@@ -34,18 +35,14 @@ class WorkflowOrganizer
     private $workflow;
 
     /**
-     * @var
+     * @var DoctrineWriterFactory
      */
-    private $writer;
-
-//    /**
-//     * @var
-//     */
-//    private $reader;
-
     private $doctrineWriterFactory;
 
-    private $readerFactory;
+    /**
+     * @var CsvReaderFactory
+     */
+    private $csvReaderFactory;
 
     /**
      * WorkflowOrganizer constructor.
@@ -53,39 +50,41 @@ class WorkflowOrganizer
      * @param FilterService          $filterStep
      * @param ConverterService       $converterStep
      * @param MappingService         $mappingStep
-     * @param CsvReaderFactory       $readerFactory
+     * @param CsvReaderFactory       $csvReaderFactory
      * @param DoctrineWriterFactory  $doctrineWriterFactory
      */
     public function __construct(
         FilterService $filterStep,
         ConverterService $converterStep,
         MappingService $mappingStep,
-        CsvReaderFactory $readerFactory,
+        CsvReaderFactory $csvReaderFactory,
         DoctrineWriterFactory $doctrineWriterFactory
     ) {
         $this->filterStep = $filterStep;
         $this->converterStep = $converterStep;
         $this->mappingStep = $mappingStep;
-        $this->readerFactory = $readerFactory;
+        $this->csvReaderFactory = $csvReaderFactory;
         $this->doctrineWriterFactory = $doctrineWriterFactory;
     }
 
     /**
-     * @param string $filename
+     * @param \SplFileObject $filename
      * @param bool   $test
      *
-     * @return Result
+     * @return array
      */
-    public function processCSVFile($filename, $test=false)
+    public function processCSVFile(\SplFileObject $fileObject, $test=false)
     {
-        $this->workflow = $this->createWorkflow($this->readerFactory->getReader(new \SplFileObject($filename)));
+        $this->workflow = $this->createWorkflow($this->csvReaderFactory->getReader($fileObject));
         if (!$test) {
             $this->workflow->addWriter($this->generateDoctrineWriter());
         }
-        return $this->workflow->process();
+        return ['result' => $this->workflow->process(), 'failedItems' => $this->workflow->getFailedItems()];
     }
 
     /**
+     * @param CsvReader $reader
+     *
      * @return Workflow
      */
     private function createWorkflow($reader)
@@ -97,6 +96,9 @@ class WorkflowOrganizer
         return $workflow;
     }
 
+    /**
+     * @return \Port\Doctrine\DoctrineWriter
+     */
     private function generateDoctrineWriter()
     {
         $writer = $this->doctrineWriterFactory->getDoctrineWriter(Product::class);
